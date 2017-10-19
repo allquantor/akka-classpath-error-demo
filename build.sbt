@@ -21,6 +21,7 @@ lazy val `classpath-error-showcase` =
         // compile time dependencies
         library.akkaActor,
         library.akkaHttp,
+        library.akkaStream,
         library.log4jApi,
         library.log4jCore,
         library.scalaLogging,
@@ -51,6 +52,7 @@ lazy val library =
     val akkaActor       = "com.typesafe.akka"          %% "akka-actor"        % Version.akka
     val akkaHttp        = "com.typesafe.akka"          %% "akka-http"         % Version.akkaHttp
     val akkaHttpTestkit = "com.typesafe.akka"          %% "akka-http-testkit" % Version.akkaHttp
+    val akkaStream      = "com.typesafe.akka"          %% "akka-stream"       % Version.akka
     val akkaTestkit     = "com.typesafe.akka"          %% "akka-testkit"      % Version.akka
     val log4jApi        = "org.apache.logging.log4j"   % "log4j-api"          % Version.log4j
     val log4jCore       = "org.apache.logging.log4j"   % "log4j-core"         % Version.log4j
@@ -170,7 +172,8 @@ lazy val releaseSettings =
 
 lazy val sbtSettings =
   Seq(
-    cancelable in Global := true
+    cancelable in Global := true,
+    evictionWarningOptions in update := EvictionWarningOptions.default.withWarnTransitiveEvictions(false)
   )
 
 lazy val scalaFmtSettings =
