@@ -29,14 +29,6 @@ lazy val `classpath-error-showcase` =
         library.akkaTestkit     % "it,test",
         library.scalaCheck      % "it,test",
         library.scalaTest       % "it,test"
-      ),
-      dependencyOverrides ++= Set(
-        // Akka HTTP 10.0.10 still uses Akka 2.4.19 instead of 2.5.3
-        // Akka 2.5.x is backwards compatible to 2.4.x
-        // as long as no custom mailbox is used.
-        // Release notes: https://akka.io/blog/news/2017/04/13/akka-2.5.0-released#binary-compatibility
-        // So it is safe to add the dependency override.
-        library.akkaActor
       )
     )
 
